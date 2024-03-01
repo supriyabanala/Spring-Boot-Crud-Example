@@ -2,6 +2,7 @@ package com.springbootcrud.example.springbootcrud.service;
 
 import com.springbootcrud.example.springbootcrud.entity.Student;
 import com.springbootcrud.example.springbootcrud.repository.StudentRepository;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -9,6 +10,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
+@Log
 public class StudentServiceImpl implements StudentService{
 
     @Autowired
@@ -39,13 +41,14 @@ public class StudentServiceImpl implements StudentService{
                 !"".equalsIgnoreCase(student.getStudentCourse())) {
             studentDB.setStudentCourse(student.getStudentCourse());
         }
-
+        log.info("Student record updated successfully");
         return studentRepository.save(studentDB);
     }
 
     // Delete operation
     @Override
     public void deleteStudentById(Long studentId) {
+        log.info("Student record deleted successfully");
         studentRepository.deleteById(studentId);
     }
 
